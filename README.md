@@ -1,3 +1,15 @@
+## 실행방법
+1. application.properties 에서 디비설정을 해준다
+2. spring.profiles.include=oauth 도 넣어준다
+3. application-oauth.properties 생성한다
+```
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=
+spring.security.oauth2.client.registration.google.scope=profile,email
+```
+라고 넣어준다.
+`spring.security.oauth2.client.registration.google.scope=profile,email` 안넣어주면 로그인 안됨.
+
 ## 디펜던시
 ```
 dependencies {
