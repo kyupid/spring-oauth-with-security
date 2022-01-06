@@ -1,5 +1,9 @@
-package com.example.demo;
+package com.example.demo.service;
 
+import com.example.demo.OAuthAttributes;
+import com.example.demo.SessionUser;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

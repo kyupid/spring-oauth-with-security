@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.entity;
 
+import com.example.demo.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

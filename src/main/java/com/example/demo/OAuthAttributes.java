@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,5 +1,10 @@
-package com.example.demo.post;
+package com.example.demo.controller;
 
+import com.example.demo.dto.PostListResponseDto;
+import com.example.demo.dto.PostResponseDto;
+import com.example.demo.dto.PostSaveRequestDto;
+import com.example.demo.dto.PostUpdateRequestDto;
+import com.example.demo.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

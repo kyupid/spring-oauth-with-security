@@ -1,4 +1,4 @@
-package com.example.demo.post;
+package com.example.demo.entity;
 
 import lombok.Builder;
 import lombok.Getter;

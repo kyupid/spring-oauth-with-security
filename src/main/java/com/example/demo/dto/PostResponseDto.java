@@ -1,5 +1,6 @@
-package com.example.demo.post;
+package com.example.demo.dto;
 
+import com.example.demo.entity.Post;
 import lombok.Getter;
 
 @Getter
