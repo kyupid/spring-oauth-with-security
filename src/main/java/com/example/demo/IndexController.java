@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.config.auth.LoginUser;
 import com.example.demo.post.PostResponseDto;
 import com.example.demo.post.PostService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,9 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postService.findAllDesc());
-
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
         if(user != null){
-            System.out.println(user.getName());
             model.addAttribute("user", user);
         }
         return "index";
