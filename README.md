@@ -1,3 +1,4 @@
+## 디펜던시
 ```
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -13,3 +14,8 @@ dependencies {
 }
 
 ```
+
+## 기능
+
+- CRUD
+- 구글 OAuth 로그인
