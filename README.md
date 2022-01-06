@@ -24,9 +24,27 @@ spring.security.oauth2.client.provider.naver.token-uri=https://nid.naver.com/oau
 spring.security.oauth2.client.provider.naver.user-info-uri=https://openapi.naver.com/v1/nid/me
 spring.security.oauth2.client.provider.naver.user-name-attribute=response
 
+## 카카오 ##
+# registration
+spring.security.oauth2.client.registration.kakao.client-id=클라이언트아이디
+spring.security.oauth2.client.registration.kakao.client-secret=클라이언트시크릿
+spring.security.oauth2.client.registration.kakao.redirect-uri=http://localhost:8080/login/oauth2/code/kakao
+spring.security.oauth2.client.registration.kakao.authorization-grant-type=authorization_code
+spring.security.oauth2.client.registration.kakao.scope=profile_nickname,account_email,profile_image
+spring.security.oauth2.client.registration.kakao.client-name=Kakao
+spring.security.oauth2.client.registration.kakao.client-authentication-method=POST
+
+# provider
+spring.security.oauth2.client.provider.kakao.authorization-uri=https://kauth.kakao.com/oauth/authorize
+spring.security.oauth2.client.provider.kakao.token-uri=https://kauth.kakao.com/oauth/token
+spring.security.oauth2.client.provider.kakao.user-info-uri=https://kapi.kakao.com/v2/user/me
+spring.security.oauth2.client.provider.kakao.user-name-attribute=id
+
+
 ```
 라고 넣어준다.
 구글은 scope `spring.security.oauth2.client.registration.google.scope=profile,email` 안넣어주면 로그인 안됨.
+카카오는 `spring.security.oauth2.client.registration.kakao.client-authentication-method=POST` 이거 안넣어주면 안됨
 
 ## 디펜던시
 ```
