@@ -9,8 +9,9 @@
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
             {{/user}}
             {{^user}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+                <a href="/oauth2/authorization/google" class="btn btn-danger active" role="button">Google Login</a>
+                <a href="/oauth2/authorization/naver" class="btn btn-success active" role="button">Naver Login</a>
+                <a href="/oauth2/authorization/kakao" class="btn btn-warning active" role="button">Kakao Login</a>
             {{/user}}
         </div>
     </div>

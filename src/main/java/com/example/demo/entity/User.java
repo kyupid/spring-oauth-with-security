@@ -47,4 +47,15 @@ public class User {
     public String getRoleKey() {
         return this.role.getKey();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", picture='" + picture + '\'' +
+                ", role=" + role +
+                '}';
+    }
 }
