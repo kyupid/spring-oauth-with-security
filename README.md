@@ -3,12 +3,30 @@
 2. spring.profiles.include=oauth 도 넣어준다
 3. application-oauth.properties 생성한다
 ```
+구글 
 spring.security.oauth2.client.registration.google.client-id=
 spring.security.oauth2.client.registration.google.client-secret=
 spring.security.oauth2.client.registration.google.scope=profile,email
+
+
+네이버
+# registration
+spring.security.oauth2.client.registration.naver.client-id=클라이언트아이디
+spring.security.oauth2.client.registration.naver.client-secret=클라이언트시크릿
+spring.security.oauth2.client.registration.naver.redirect-uri=http://localhost:8080/login/oauth/code/naver
+spring.security.oauth2.client.registration.naver.authorization-grant-type=authorization_code
+spring.security.oauth2.client.registration.naver.scope=name,email.profile_image
+spring.security.oauth2.client.registration.naver.client-name=Naver
+
+# provider
+spring.security.oauth2.client.provider.naver.authorization-uri=https://nid.naver.com/oauth2.0/authorize
+spring.security.oauth2.client.provider.naver.token-uri=https://nid.naver.com/oauth2.0/token
+spring.security.oauth2.client.provider.naver.user-info-uri=https://openapi.naver.com/v1/nid/me
+spring.security.oauth2.client.provider.naver.user-name-attribute=response
+
 ```
 라고 넣어준다.
-`spring.security.oauth2.client.registration.google.scope=profile,email` 안넣어주면 로그인 안됨.
+구글은 scope `spring.security.oauth2.client.registration.google.scope=profile,email` 안넣어주면 로그인 안됨.
 
 ## 디펜던시
 ```
