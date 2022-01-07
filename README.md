@@ -49,9 +49,9 @@ spring.security.oauth2.client.provider.kakao.user-name-attribute=id
 
 
 ```
-라고 넣어준다.
-구글은 scope `spring.security.oauth2.client.registration.google.scope=profile,email` 안넣어주면 로그인 안됨.
-카카오는 `spring.security.oauth2.client.registration.kakao.client-authentication-method=POST` 이거 안넣어주면 안됨
+라고 넣어준다.   
+구글은 scope `spring.security.oauth2.client.registration.google.scope=profile,email` 안넣어주면 로그인 안됨.   
+카카오는 `spring.security.oauth2.client.registration.kakao.client-authentication-method=POST` 이거 안넣어주면 안됨   
 
 ## 디펜던시
 ```
