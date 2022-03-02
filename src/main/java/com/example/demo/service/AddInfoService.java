@@ -5,10 +5,19 @@ import com.example.demo.SessionUser;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +36,23 @@ public class AddInfoService {
         sessionUser.setRole(Role.USER);
         httpSession.setAttribute("user", sessionUser);
         User user = new User(sessionUser);
+        System.out.println(httpSession.getAttribute("SPRING_SECURITY_CONTEXT"));
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<Role> roles = new ArrayList<>();
+        roles.add(Role.USER);
+        List<GrantedAuthority> actualAuthorities = roles.stream().map(role -> new
+                SimpleGrantedAuthority(role.getKey())).collect(Collectors.toList());
+        Authentication newAuth = new
+                UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), actualAuthorities);
+
+        SecurityContext context = SecurityContextHolder.getContext();
+        context.setAuthentication(newAuth);
+        httpSession.setAttribute("SPRING_SECURITY_CONTEXT", context);
+        // https://stackoverflow.com/questions/50585731/spring-security-how-to-change-user-roles-without-login-and-logout
+        // https://okky.kr/article/256863
+
         userRepository.save(user);
     }
 }
