@@ -46,6 +46,7 @@ public class User {
         this.role = role;
     }
 
+    // 여기에서 ROLE을 서비스에 접근할수있는 USER로 준다
     public User(SessionUser user) {
         this.name = user.getName();
         this.email = user.getEmail();

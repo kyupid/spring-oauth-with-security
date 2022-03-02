@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.Role;
 import com.example.demo.SessionUser;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -22,6 +23,9 @@ public class AddInfoService {
         sessionUser.setLocation(location);
         sessionUser.setAge(age);
 
+        // 추가정보까지 제출받은것은 회원가입이 완료됐으므로 접근가능하도록 ROLE을 USER로 변경한다
+        sessionUser.setRole(Role.USER);
+        httpSession.setAttribute("user", sessionUser);
         User user = new User(sessionUser);
         userRepository.save(user);
     }

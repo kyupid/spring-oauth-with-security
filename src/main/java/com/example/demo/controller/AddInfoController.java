@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 public class AddInfoController {
 
     private final AddInfoService addInfoService;
+    private final HttpSession httpSession;
 
     @GetMapping("/addInfo")
     public String index() {
@@ -21,7 +22,7 @@ public class AddInfoController {
     }
 
     @PostMapping("/addInfo/signup")
-    public String signup(HttpServletRequest request, HttpSession httpSession) {
+    public String signup(HttpServletRequest request) {
         addInfoService.saveSessionUser(request, httpSession);
         return "redirect:/";
     }
