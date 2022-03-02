@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.Role;
+import com.example.demo.SessionUser;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,14 @@ public class User {
     @Column
     private String picture;
 
+    // 추가 정보 시작
+    @Column(nullable = false)
+    private String location;
+
+    @Column(nullable = false)
+    private Integer age;
+    // 추가 정보 끝
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
@@ -35,6 +44,15 @@ public class User {
         this.email = email;
         this.picture = picture;
         this.role = role;
+    }
+
+    public User(SessionUser user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.picture = user.getPicture();
+        this.role = user.getRole();
+        this.location = user.getLocation();
+        this.age = user.getAge();
     }
 
     public User update(String name, String picture) {
