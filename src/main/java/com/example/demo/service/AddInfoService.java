@@ -11,6 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +40,13 @@ public class AddInfoService {
         User user = new User(sessionUser);
         System.out.println(httpSession.getAttribute("SPRING_SECURITY_CONTEXT"));
 
+        // 세션에 있는 SPRING_SECURITY_CONTEXT 의 ROLE 을 변경해준다.
+        updateRoleSpringSecurityContextSession(httpSession);
 
+        userRepository.save(user);
+    }
+
+    private void updateRoleSpringSecurityContextSession(HttpSession httpSession) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         List<Role> roles = new ArrayList<>();
         roles.add(Role.USER);
@@ -52,7 +60,6 @@ public class AddInfoService {
         httpSession.setAttribute("SPRING_SECURITY_CONTEXT", context);
         // https://stackoverflow.com/questions/50585731/spring-security-how-to-change-user-roles-without-login-and-logout
         // https://okky.kr/article/256863
-
-        userRepository.save(user);
+        System.out.println("변경후: " + httpSession.getAttribute("SPRING_SECURITY_CONTEXT"));
     }
 }
