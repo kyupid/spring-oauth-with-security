@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.Role;
+import com.example.demo.RoleConverter;
 import com.example.demo.SessionUser;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,7 +35,7 @@ public class User {
     private Integer age;
     // 추가 정보 끝
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = RoleConverter.class)
     @Column(nullable = false)
     private Role role;
 
