@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 import com.example.demo.Role;
+import com.example.demo.RoleConverter;
+import com.example.demo.SessionUser;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +27,15 @@ public class User {
     @Column
     private String picture;
 
-    @Enumerated(EnumType.STRING)
+    // 추가 정보 시작
+    @Column(nullable = false)
+    private String location;
+
+    @Column(nullable = false)
+    private Integer age;
+    // 추가 정보 끝
+
+    @Convert(converter = RoleConverter.class)
     @Column(nullable = false)
     private Role role;
 
@@ -35,6 +45,16 @@ public class User {
         this.email = email;
         this.picture = picture;
         this.role = role;
+    }
+
+    // 여기에서 ROLE을 서비스에 접근할수있는 USER로 준다
+    public User(SessionUser user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.picture = user.getPicture();
+        this.role = user.getRole();
+        this.location = user.getLocation();
+        this.age = user.getAge();
     }
 
     public User update(String name, String picture) {
