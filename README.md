@@ -4,7 +4,7 @@
 
 ![unnamed](https://user-images.githubusercontent.com/59721293/156748328-cd41da03-45bb-4ac1-bd91-fca8d6fb05e4.gif)
 
-- [custom-filter](https://github.com/kyupid/spring-oauth-with-security/tree/custom-filter)
+- [custom-filter](https://github.com/kyupid/spring-oauth-with-security/tree/custom-filter): 커스텀 필터 구현하기
   - [커스텀 필터 구현하기 #3](https://github.com/kyupid/spring-oauth-with-security/issues/3)
 
 
