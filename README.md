@@ -1,3 +1,10 @@
+## 브랜치
+- main: 기본 기능
+- [add-info](https://github.com/kyupid/spring-oauth-with-security/tree/add-info): 인증 후 추가정보 받기 예를 들면 아래와 같은 상황
+
+![unnamed](https://user-images.githubusercontent.com/59721293/156748328-cd41da03-45bb-4ac1-bd91-fca8d6fb05e4.gif)
+
+
 ## 실행방법
 1. application.properties 에서 디비설정을 해준다
 2. spring.profiles.include=oauth 도 넣어준다
