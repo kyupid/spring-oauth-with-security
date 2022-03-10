@@ -12,9 +12,15 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication)
             throws AuthenticationException {
 
-        Authentication authenticatedToken = authentication;
+        CustomAuthToken authenticatedToken = (CustomAuthToken) authentication;
+        String authNeeded = String.valueOf(authenticatedToken.getPrincipal());
+        // 이 principal이 유효한 토큰인지 검증하는게 오겠지
+        // 예를 들어 아이디,비번 로그인 유저라면 실제 인증하는 로직을 아래에 구현하고
+        // 각종 처리를 구현
+        // 비번이 일치하는지
+        // 아이디로 회원을 조회 했을 때 존재하는 회원인지
+        // 기타 등등과 적절한 예외 처리
         // 해당 객체를 true 라고 하면 인증이 된다.
-        // 여기서 로직을 태워서 만약 인증이 아니라면 throw Authentication 을 던져주면 된다.
         authenticatedToken.setAuthenticated(true);
 
         return authenticatedToken;
