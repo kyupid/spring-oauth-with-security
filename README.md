@@ -79,5 +79,29 @@ dependencies {
 - 구글 OAuth 로그인
 
 
+## 원리
+
+기본적인 Authorization Code Grant 방식으로는 아래처럼 동작
+1. Resource Owner -> Client 로그인해야 얻을 수 있는 제한된 자원 요청
+2. Client -> Resource Server 권한 부여 승인 코드 요청 (GET | client_id, redirect_uri, response_type=code)
+3. 각 Resource Server 의 로그인 화면이 나옴
+4. 로그인 성공
+5. Resource Server -> Client 권한 부여 승인 코드 전달
+6. Client -> Resource Server 권한부여승인코드를 가지고 Access Token 요청 (POST | client_id, client_secret, redirect_uri, grant_type=authorization_code, code)
+7. Resource Server -> Client 으로 Access Token 응답
+8. Client -> Resource Server 로그인해야 얻을수있는 제한된 자원을 Access Token으로 요청
+9. Resource Server -> Client 요청 자원 응답
+
+### 스프링 시큐리티 & OAuth2
+1. `http://client.example.com/oauth2/authorization/서비스명(google,kakao,naver)` 를통해서
+   Resource Owner는 Client로 자원을 요청한다(로그인)
+2. `/oauth2/authorization/서비스명`은 아마도 `spring-security-oauth2-client` 를 붙여주면   
+   기본적으로 그 서비스에 대한 oauth2를 요청하는 것 같다.
+3. Client `spring-security-oauth2-client`는 서비스 Authorization URL로 리다이렉트한다.
+4. 이때, 요청에 필요한 정보들(client_id,client_secret 등)은 Client 서버에서 가지고 있는 상태임.
+5. 인증이 끝나면(로그인 성공) Client는 그 정보들을 가지고 Resource Server로 권한 부여 승인 코드를 요청한다.
+6. Client는 Resource Owner로부터 권한 부여 승인코드를 전달받는다
+8. 이때 스프링시큐리티를 거쳐 `CustomOAuth2UserService`에서는 유저에 디비를 저장또는 업데이트한다.,
+
 ## 코드 출처
 https://velog.io/@swchoi0329/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0%EC%99%80-OAuth-2.0%EC%9C%BC%EB%A1%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84
