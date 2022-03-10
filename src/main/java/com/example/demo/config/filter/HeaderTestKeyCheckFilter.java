@@ -16,7 +16,7 @@ public class HeaderTestKeyCheckFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String value = getValueFromTestKey(request).orElseThrow(NoAccessRightException::new);
+        String value = getValueFromTestKey(request).orElseThrow(NoAccessRightException::new); // extends AuthenticationException
         CustomAuthToken authenticatedToken = new CustomAuthToken(value);
         SecurityContextHolder.getContext().setAuthentication(authenticatedToken);
 
